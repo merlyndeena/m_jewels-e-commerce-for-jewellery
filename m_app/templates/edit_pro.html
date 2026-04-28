@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+{% extends 'index.html' %}
+{% block content %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<form method="post" action="{% url 'update_pro' p_id=pro.id %}" enctype="multipart/form-data">
+    {% csrf_token %}
+<div class="col-12 grid-margin stretch-card">
+              <div class="card">
+                <div class="card-body">
+                  <h4 class="card-title">Edit Product</h4>
+                  <form class="forms-sample">
+                    <div class="form-group">
+                      <label for="exampleSelectGender">Category Name</label>
+                        <select class="form-control" id="exampleSelectGender" name="select">
+                          <option>{{pro.cat_name}}</option>
+                          {% for i in select %}
+                          <option>{{i.c_name}}</option>
+                          {% endfor %}
+                        </select>
+                      </div>
+                    <div class="form-group">
+                      <label for="exampleInputName1"> Product Name</label>
+                      <input type="text" class="form-control" id="exampleInputName1" placeholder="Name" name="name" value="{{pro.p_name}}">
+                    </div>
+                      <div class="form-group">
+                      <label for="exampleInputName1"> Product MRP</label>
+                      <input type="text" class="form-control" id="exampleInputName1" placeholder="Name" name="mrp" value="{{pro.p_mrp}}">
+                    </div>
+                    <div class="form-group">
+                      <label for="exampleInputName1"> Product Quantity</label>
+                      <input type="text" class="form-control" id="exampleInputName1" placeholder="Name" name="qua" value="{{pro.p_quan}}">
+                    </div>
+
+                    <div class="form-group">
+                      <label>Product Image1</label>
+                     <img src="{{pro.p_img.url}}" height="100px" width="100px">
+                      <input type="file" name="img" >
+
+                    </div>
+                    <div class="form-group">
+                      <label>Product Image2 </label>
+                      <img src="{{pro.p_img1.url}}" width="100px" height="100px">
+                      <input type="file" name="img1" >
+
+                    </div>
+
+                    <div class="form-group">
+                      <label for="exampleTextarea1">Product Description</label>
+                      <textarea class="form-control" id="exampleTextarea1" rows="4" name="desc">{{pro.p_desc}}</textarea>
+                    </div>
+                    <button type="submit" class="btn btn-primary mr-2">Upload</button>
+                    <button class="btn btn-light">Cancel</button>
+                  </form>
+                </div>
+              </div>
+            </div>
+</form>
+
+</body>
+</html>
+{% endblock %}

@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+{% extends 'index.html' %}
+{% block content %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<form method="post" action="{% url 'save_pro' %}" enctype="multipart/form-data">
+    {% csrf_token %}
+<div class="col-12 grid-margin stretch-card">
+              <div class="card">
+                <div class="card-body">
+                  <h4 class="card-title">Add New Product</h4>
+                  <form class="forms-sample">
+                    <div class="form-group">
+                      <label for="exampleSelectGender">Category Name</label>
+                        <select class="form-control" id="exampleSelectGender" name="select">
+                          <option>Select your category</option>
+                          {% for i in select %}
+                          <option>{{i.c_name}}</option>
+                          {% endfor %}
+                        </select>
+                      </div>
+                    <div class="form-group">
+                      <label for="exampleInputName1"> Product Name</label>
+                      <input type="text" class="form-control" id="exampleInputName1" placeholder="Name" name="name">
+                    </div>
+                      <div class="form-group">
+                      <label for="exampleInputName1"> Product MRP</label>
+                      <input type="text" class="form-control" id="exampleInputName1" placeholder="Name" name="mrp">
+                    </div>
+                    <div class="form-group">
+                      <label for="exampleInputName1"> Product Quantity</label>
+                      <input type="text" class="form-control" id="exampleInputName1" placeholder="Name" name="qua">
+                    </div>
+
+                    <div class="form-group">
+                      <label>Product Image1</label>
+                      <input type="file" name="img" >
+
+                    </div>
+                    <div class="form-group">
+                      <label>Product Image2 </label>
+                      <input type="file" name="img1" >
+
+                    </div>
+
+                    <div class="form-group">
+                      <label for="exampleTextarea1">Product Description</label>
+                      <textarea class="form-control" id="exampleTextarea1" rows="4" name="desc"></textarea>
+                    </div>
+                    <button type="submit" class="btn btn-primary mr-2">Submit</button>
+                    <button class="btn btn-light">Cancel</button>
+                  </form>
+                </div>
+              </div>
+            </div>
+</form>
+
+</body>
+</html>
+{% endblock %}
